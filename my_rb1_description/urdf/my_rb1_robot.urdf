@@ -1,0 +1,271 @@
+<?xml version="1.0" ?>
+
+<robot name ="my_rb1_robot">
+    
+    <link name = "base_footprint">
+    </link>
+
+    <!-- Joint base_footprint/base_link-->
+    <joint name = "joint_bf_base_link" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 0 0"/>
+        <child link = "base_link"/>
+        <parent link = "base_footprint" />
+    </joint>
+    <!-- base link-->
+    <link name = "base_link">
+        <inertial>
+            <mass value = "20"/>
+            <origin xyz = "0 0 0.175" rpy = "0 0 0"/>
+            <inertia 
+                ixx ="0.4625"
+                ixy ="0"
+                ixz ="0"
+                iyy ="0.4625"
+                iyz ="0"
+                izz ="0.625"
+                />
+        </inertial>
+
+        <collision>
+            <origin xyz = "0 0 0.175" rpy = "0 0 0"/>
+            <geometry>
+                <cylinder length = "0.03" radius= "0.025"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <geometry>
+                <cylinder length = "0.3" radius= "0.25"/>
+            </geometry>
+            <material name="Black">
+                <color rgba="0.1 0.1 0.1 1" />
+            </material>
+        </visual>
+
+    </link>
+    <!-- joint base_link/right_wheel-->
+    <joint name = "joint_base_rigth_wheel" type = "continuous">
+        <origin rpy = "0 0 0" xyz = "0 0.2 -0.15"/>
+        <child link = "link_right_wheel"/>
+        <parent link = "base_link" />
+        <axis rpy = "0 0 0" xyz = "0 1 0"/>
+    </joint>
+    <!-- joint base_link/left_wheel-->
+    <joint name = "joint_base_left_wheel" type = "continuous">
+        <origin rpy = "0 0 0" xyz = "0 -0.2 -0.15"/>
+        <child link = "link_left_wheel"/>
+        <parent link = "base_link" />
+        <axis rpy = "0 0 0" xyz = "0 1 0"/>
+    </joint>
+    <!-- right wheel link-->
+    <link name = "link_right_wheel">
+            <inertial>
+            <mass value = "1"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia 
+                ixx ="0.00023125"
+                ixy ="0"
+                ixz ="0"
+                iyy ="0.00023125"
+                iyz ="0"
+                izz ="0.0003125"
+                />
+        </inertial>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "1.57 0 0"/>
+            <geometry>
+                <cylinder length = "0.03" radius= "0.025"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz = "0 0 0" rpy = "1.57 0 0"/>
+            <geometry>
+                <cylinder length = "0.03" radius= "0.025"/>
+            </geometry>
+        </visual>
+
+    </link>
+    <!-- left wheel link-->
+    <link name = "link_left_wheel">
+        <inertial>
+            <mass value = "1"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia 
+            ixx ="0.00023125"
+            ixy ="0"
+            ixz ="0"
+            iyy ="0.00023125"
+            iyz ="0"
+            izz ="0.0003125"
+            />
+        </inertial>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "1.57 0 0"/>
+            <geometry>
+                <cylinder length = "0.03" radius= "0.025"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz = "0 0 0" rpy = "1.57 0 0"/>
+            <geometry>
+                <cylinder length = "0.03" radius= "0.025"/>
+            </geometry>
+        </visual>
+
+    </link>
+
+
+    <!-- joint base_link/front_caster_wheel-->
+    <joint name = "joint_base_fc_wheel" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0.1 0.0 -0.15"/>
+        <child link = "front_caster"/>
+        <parent link = "base_link" />
+        <axis rpy = "0 0 0" xyz = "0 1 0"/>
+    </joint>
+    <!-- joint base_link/back_caster_wheel-->
+    <joint name = "joint_base_bc_wheel" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "-0.1 0.0 -0.15"/>
+        <child link = "back_caster"/>
+        <parent link = "base_link" />
+        <axis rpy = "0 0 0" xyz = "0 1 0"/>
+    </joint>
+
+    <!-- front caster-->
+    <link name = "front_caster">
+            <inertial>
+            <mass value = "1"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia 
+                ixx ="0.00025"
+                ixy ="0"
+                ixz ="0"
+                iyy ="0.00025"
+                iyz ="0"
+                izz ="0.00025"
+                />
+        </inertial>
+        <!-- caster support-->
+        <collision>
+            <origin xyz = "0 0 0.01" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.025" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz = "0 0 0.01" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.025" />
+            </geometry>            
+            <material name="DarkBlue">
+                <color rgba="0.2 0.2 0.4 1" />
+            </material>
+        </visual>
+        <!-- caster wheel-->
+        <collision>
+            <origin xyz = "0 0 -0.015" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.01" />
+            </geometry>
+            <contact_coefficients mu="0.0" kp="0.0" kd="0.0" />
+        </collision>
+        <visual>
+            <origin xyz = "0 0 -0.015" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.01" />
+            </geometry>
+            <material name="Grey">
+                <color rgba="0.6 0.6 0.6 1" />
+            </material>
+        </visual>
+    </link>
+
+    <!-- back caser link-->
+    <link name = "back_caster">
+            <inertial>
+            <mass value = "1"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia 
+                ixx ="0.00025"
+                ixy ="0"
+                ixz ="0"
+                iyy ="0.00025"
+                iyz ="0"
+                izz ="0.00025"
+                />
+        </inertial>
+        <!-- caster support-->
+        <collision>
+            <origin xyz = "0 0 0.01" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.025" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz = "0 0 0.01" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.025" />
+            </geometry>            
+            <material name="DarkBlue">
+                <color rgba="0.2 0.2 0.4 1" />
+            </material>
+        </visual>
+        <!-- caster wheel-->
+        <collision>
+            <origin xyz = "0 0 -0.015" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.01" />
+            </geometry>
+            <contact_coefficients mu="0.0" kp="0.0" kd="0.0" />
+        </collision>
+        <visual>
+            <origin xyz = "0 0 -0.015" rpy = "0 0 0"/>
+            <geometry>
+                <sphere radius="0.01" />
+            </geometry>
+            <material name="Grey">
+                <color rgba="0.6 0.6 0.6 1" />
+            </material>
+        </visual>
+    </link>
+
+    <!-- joint base_link/front_laser-->
+    <joint name = "joint_base_fl" type = "fixed">
+        <origin rpy = "3.14 0 0" xyz = "0.25 0.0 0.075"/>
+        <child link = "front_laser"/>
+        <parent link = "base_link" />
+        <axis rpy = "0 0 0" xyz = "0 1 0"/>
+    </joint>
+
+    <!-- front laser link-->
+    <link name = "front_laser">
+            <inertial>
+            <mass value = "1"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia 
+                ixx ="0.00023125"
+                ixy ="0"
+                ixz ="0"
+                iyy ="0.00023125"
+                iyz ="0"
+                izz ="0.0003125"
+                />
+        </inertial>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "1.57 0 0"/>
+            <geometry>
+                <cylinder length = "0.03" radius= "0.025"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz = "0 0 0" rpy = "1.57 0 0"/>
+            <geometry>
+                <cylinder length = "0.03" radius= "0.025"/>
+            </geometry>
+        </visual>
+
+    </link>
+
+</robot>
