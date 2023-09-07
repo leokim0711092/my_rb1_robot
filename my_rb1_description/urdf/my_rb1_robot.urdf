@@ -101,7 +101,7 @@
 
     <!-- Joint base_footprint/base_link-->
     <joint name = "joint_bf_base_link" type = "fixed">
-        <origin rpy = "0 0 0" xyz = "0 0 0"/>
+        <origin rpy = "0 0 0" xyz = "0 0 0.15"/>
         <child link = "base_link"/>
         <parent link = "base_footprint" />
     </joint>
@@ -109,7 +109,7 @@
     <link name = "base_link">
         <inertial>
             <mass value = "20"/>
-            <origin xyz = "0 0 0.175" rpy = "0 0 0"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
             <inertia 
                 ixx ="0.4625"
                 ixy ="0"
@@ -121,7 +121,7 @@
         </inertial>
 
         <collision>
-            <origin xyz = "0 0 0.175" rpy = "0 0 0"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
             <geometry>
                 <cylinder length = "0.03" radius= "0.025"/>
             </geometry>
